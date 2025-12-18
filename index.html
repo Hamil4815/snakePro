@@ -1,28 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
-  <title>Last</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RL Snake Environment</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="shortcut icon" href="#">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<body>
-  <!-- Botones arriba -->
-  <div id="controls">
-    <input type="text" id="tam" placeholder="Tamaño">
-    <button id="send">Crear tablero</button>
-    <button id="stop">Alto</button>
-    <button id="nn">NN</button>
-    <button id="A+">A*+</button>
-  </div>
 
-  <!-- Tablero -->
-  <div id="board"></div>
+<body>
+  <div class="main-container">
+    <div class="board-container">
+      <div id="board" class="game-board" height="120px" width="120px"></div>
+    </div>
+    <aside class="controls-panel">
+      <h1>🐍 AI Lab <span class="version">v1.0</span></h1>
+
+      <div class="panel-section">
+        <h3>Dimensión del Entorno</h3>
+        <div class="btn-group">
+          <button class="size-btn" data-size="5">Pequeño (5x5)</button>
+          <button class="size-btn active" data-size="11">Medio (11x11)</button>
+          <button class="size-btn" data-size="21">Grande (21x21)</button>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <h3>Algoritmo de Busqueda</h3>
+        <select id="busqueda">
+          <option value="Axmas">A*</option>
+          <option value="nn">NN</option>
+          <option value="dfs">DFS</option>
+        </select>
+        <button type="button" id="ejecutar">ejecutar</button>
+      </div>
+      <!-- a continuacion hare una seccion para elegir el algoritmo de busqueda -->
+
+
+      <div class="panel-section">
+        <h3>Control Manual</h3>
+        <div class="btn-group">
+          <button id="stop" class="danger-btn">Pausa/Play</button>
+        </div>
+      </div>
+      <div class="stats-box">
+        <p>Estado: <span id="status-text">Inactivo</span></p>
+      </div>
+    </aside>
+  </div>
 
   <script src="Axmas.js"></script>
   <script src="nn.js"></script>
   <script src="game.js"></script>
-  <!-- <script src="dl.js"></script> -->
-
 </body>
+
 </html>
