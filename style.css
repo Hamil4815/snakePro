@@ -1,5 +1,5 @@
 :root {
-  --cols: 21;       /* número de columnas inicial */
+  --cols: 7;       /* número de columnas inicial */
   --cell-size: 24px; /* tamaño de celda */
 }
 
@@ -25,23 +25,48 @@ body {
   border-radius: 6px;
   margin: 10px 0;
 }
+.danger-btn{
+  background-color: #d32f2f;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  transition: all 0.2s;
+  flex: 1;
+}
 
 #board {
   display: grid;
-  grid-template-columns: repeat(var(--cols), var(--cell-size));
-  grid-auto-rows: var(--cell-size);
+  /* CAMBIO 1: Usa 1fr. Esto significa "una fracción del espacio disponible" */
+  grid-template-columns: repeat(var(--cols), 1fr);
+  grid-template-rows: repeat(var(--cols), 1fr);
+  
+  /* CAMBIO 2: Define el tamaño del CONTENEDOR, no de las celdas */
+  width: 100%;        /* Ocupa todo el ancho del padre */
+  max-width: 600px;   /* Pero no te pases de 600px */
+  aspect-ratio: 1/1;  /* Mantiene el tablero perfectamente cuadrado */
+  
   gap: 1px;
   background: #333;
 }
 
 .cell {
+  /* CAMBIO 3: ELIMINA width y height fijos. 
+     La celda se estirará para llenar el hueco del grid automáticamente */
   background: #222;
+  
+  /* width: var(--cell-size);  <-- BORRAR ESTO */
+  /* height: var(--cell-size); <-- BORRAR ESTO */
+  
+  /* Resto de estilos (font-size, flex, etc) */
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 10px;
-  align-content: center;
-  width: var(--cell-size);
-  height: var(--cell-size);
 }
-
 .snake { background: limegreen; }
 .head  { background: rgb(0, 0, 0); }
 .food  { background: crimson; }
